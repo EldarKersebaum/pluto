@@ -123,17 +123,11 @@ namespace Platformer.Mechanics
 
             if (move.x > 0.01f)
             {
-                if(this.gameObject.transform.rotation.eulerAngles.y == 180)
-                    this.gameObject.transform.Rotate(0,180,0);
-                /*spriteRenderer.flipX = false;
-                firePoint.transform.position = new Vector3(Math.Abs(firePoint.transform.position.x), 
-                                                            firePoint.transform.position.y, 
-                                                            firePoint.transform.position.z);
-            */}
+                spriteRenderer.flipX = false;
+            }
             else if (move.x < -0.01f)
             {
-                if(this.gameObject.transform.rotation.eulerAngles.y != 180)
-                    this.gameObject.transform.Rotate(0,-180,0);
+                spriteRenderer.flipX = true;
             }
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);

@@ -1,5 +1,6 @@
 ## Features Prio 1
-- Enemy Moving to player  []
+- Enemy Moving to player  [x]
+- Aiming mit der Maus [x]
 - Enemy Spawner (Punkte an denen enemies gespawned werden)  []
 ## Features Prio 2
 - Weapon Reload after X bullets  []

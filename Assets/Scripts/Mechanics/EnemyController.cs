@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Platformer.Gameplay;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 
@@ -14,11 +15,15 @@ namespace Platformer.Mechanics
     {
         public PatrolPath path;
         public AudioClip ouch;
+        public GameObject Player;
+        public float speed;
 
         internal PatrolPath.Mover mover;
         internal AnimationController control;
         internal Collider2D _collider;
         internal AudioSource _audio;
+        internal Transform _transform;
+        internal Rigidbody2D rb;
         SpriteRenderer spriteRenderer;
 
         public Bounds Bounds => _collider.bounds;
@@ -29,6 +34,8 @@ namespace Platformer.Mechanics
             _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            _transform = GetComponent<Transform>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         void OnCollisionEnter2D(Collision2D collision)
@@ -49,6 +56,12 @@ namespace Platformer.Mechanics
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
             }
+            else
+            {
+                control.maxSpeed = 0.75f;
+                control.move.x = Mathf.Clamp(Player.transform.position.x - transform.position.x, -1, 1);
+            }
+
         }
 
     }

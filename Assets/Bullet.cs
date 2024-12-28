@@ -11,10 +11,7 @@ public class BulletScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(this.gameObject.transform.rotation.y == 0)
-            rb.velocity = Vector2.right * speed;
-        else
-            rb.velocity = Vector2.left * speed;
+        //rb.velocity = Vector2.right * speed;
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo){
