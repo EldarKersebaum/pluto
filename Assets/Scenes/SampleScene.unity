@@ -171,7 +171,6 @@ MonoBehaviour:
     type: 3}
   firepoint: {fileID: 12877988}
   playerController: {fileID: 838423048}
-  bulletSpeed: 3
 --- !u!1 &30668784
 GameObject:
   m_ObjectHideFlags: 0
