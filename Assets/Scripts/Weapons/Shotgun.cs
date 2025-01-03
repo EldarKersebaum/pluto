@@ -7,18 +7,19 @@ namespace Platformer.Weapons
         public GameObject bulletPrefab;
         override public void Shoot(GameObject bulletPrefab, Transform firepoint)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-            Rigidbody2D bulletBody = bullet.GetComponent<Rigidbody2D>();
-            bulletBody.velocity = firepoint.right * bulletSpeed;
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, firepoint.position,
+                    Quaternion.Euler(
+                        firepoint.rotation.eulerAngles.x,
+                        firepoint.rotation.eulerAngles.x,
+                        firepoint.rotation.eulerAngles.z - 90));
+                Rigidbody2D bulletBody = bullet.GetComponent<Rigidbody2D>();
 
+                bulletBody.velocity = bulletSpeed * firepoint.right + firepoint.up * Random.Range(-5, 5);
+                Debug.Log("Velocity: " + bulletBody.velocity.ToString());
+            }
 
-            GameObject bulletUp = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-            Rigidbody2D bulletBodyUp = bullet.GetComponent<Rigidbody2D>();
-            bulletBody.velocity = (firepoint.right + firepoint.up) * bulletSpeed;
-
-            GameObject bulletDown = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-            Rigidbody2D bulletBodyDown = bullet.GetComponent<Rigidbody2D>();
-            bulletBody.velocity = (firepoint.right + firepoint.up * -1) * bulletSpeed;
         }
     }
 }

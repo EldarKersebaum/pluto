@@ -39,7 +39,7 @@ namespace Platformer.Mechanics
         public bool controlEnabled = true;
 
         bool jump;
-        Vector2 move;
+        public Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
@@ -48,7 +48,7 @@ namespace Platformer.Mechanics
 
         public GameObject firePoint;
 
-        public Weapon equippedWeapon = new Shotgun();
+        public Weapon equippedWeapon;
 
         void Awake()
         {
@@ -57,6 +57,7 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            equippedWeapon = gameObject.AddComponent<Shotgun>();
         }
 
         protected override void Update()
@@ -74,7 +75,6 @@ namespace Platformer.Mechanics
             }
             else
             {
-                move.x = 0;
             }
             UpdateJumpState();
             base.Update();
